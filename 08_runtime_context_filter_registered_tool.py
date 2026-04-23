@@ -1,3 +1,7 @@
+"""
+context 一般代表不可变配置，如用户角色、用户身份等，根据不同的角色个性化回答
+"""
+
 from typing import TypedDict, Callable
 from langchain_core.tools import tool
 from init_model import *

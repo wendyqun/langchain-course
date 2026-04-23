@@ -1,3 +1,8 @@
+"""
+STATE 短期记忆——当前对话（消息、计数器、自定义字段）存在的可变数据
+例如： 访问通话记录，跟踪工具通话次数
+"""
+
 from typing import TypedDict, Annotated, Callable
 
 from langchain.agents import AgentState
