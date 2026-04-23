@@ -1,5 +1,6 @@
 from typing import TypedDict, Annotated, Callable
 
+from langchain.agents import AgentState
 from langchain_core.tools import tool
 from langgraph.graph import add_messages
 
@@ -27,7 +28,7 @@ def advanced_private_search(query: str) -> str:
     return f"advanced private result for {query} is 25 degrees Celsius"
 
 # 1. 定义 State Schema，必须包含你要用的所有字段
-class AgentState(TypedDict):
+class MyAgentState(AgentState):
     messages: Annotated[list, add_messages]
     authenticated: bool  # 👈 声明这个字段
 
@@ -62,7 +63,7 @@ agent = create_agent(
     model=deep_model,
     tools=[public_search, private_search, advanced_private_search],
     middleware=[state_based_search],
-    state_schema = AgentState  # 👈 关键：告诉 LangGraph 用这个 Schema
+    state_schema = MyAgentState  # 👈 关键：告诉 LangGraph 用这个 Schema
 )
 
 response = agent.invoke({"messages": [{"role": "user", "content": "查询北京天气'"}],
