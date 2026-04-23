@@ -20,7 +20,7 @@ qianwen_model = init_chat_model(
     base_url=os.getenv("QWEN_API_BASE"),
 )
 
-
+# 使用中间件动态选择模型
 @wrap_model_call
 def dynamic_model_select(request: ModelRequest, handler) -> ModelResponse:
     """根据用户的问题，选择合适的模型."""
